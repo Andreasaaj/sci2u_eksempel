@@ -9,22 +9,7 @@ def latex(expr, big=False, **kwargs):
     if type(expr)==type(Matrix()):
         raise TypeError("Matrices MUST be given to latex_matrix()")
 
-    try:
-        #print(expr)
-        const = expr.func(*[term for term in expr.args if not term.free_symbols])
-        from sympy import Integer
-        if const == Integer(1):
-            sdfhsgh
-        #print(const)
-        without_const = expr.extract_multiplicatively(const)
-        #print(without_const)
-        from sympy import UnevaluatedExpr
-        new_expr = UnevaluatedExpr(const)*without_const
-        #print(new_expr)
-        #print('latex',latex(new_expr))
-        return_string = sympy_latex(new_expr, **kwargs)
-    except:
-        return_string = sympy_latex(expr, **kwargs)
+    return_string = sympy_latex(expr, **kwargs)
 
     if big:
         return_string = r'\displaystyle %s' % return_string
